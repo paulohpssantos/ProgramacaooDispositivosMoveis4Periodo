@@ -13,7 +13,7 @@ import com.example.exemploactivity.modelo.Aluno;
 public class MainActivity extends AppCompatActivity {
 
     private Button btCadastrarAluno;
-    private TextView tvAlunosCadastrados;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btCadastrarAluno = findViewById(R.id.btCadastroAluno);
-        tvAlunosCadastrados = findViewById(R.id.tvAlunosCadastrados);
 
         btCadastrarAluno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,14 +40,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        String texto = "";
-        for (Aluno aluno : Controller.getInstance().retornarAlunos()) {
-            texto += "RA: "+aluno.getRa()+" - "+aluno.getNome()+"\n";
-        }
-        tvAlunosCadastrados.setText(texto);
 
-    }
 }
