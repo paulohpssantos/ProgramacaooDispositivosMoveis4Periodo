@@ -13,6 +13,7 @@ import com.example.exemploactivity.modelo.Aluno;
 public class MainActivity extends AppCompatActivity {
 
     private Button btCadastrarAluno;
+    private Button btCadastrarProfessor;
 
 
     @Override
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btCadastrarAluno = findViewById(R.id.btCadastroAluno);
+        btCadastrarProfessor = findViewById(R.id.btCadastroProfessor);
 
         btCadastrarAluno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +30,19 @@ public class MainActivity extends AppCompatActivity {
                 abrirCadastroAluno();
             }
         });
+
+        btCadastrarProfessor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirCadastroProfessor();
+            }
+        });
+    }
+
+    private void abrirCadastroProfessor() {
+        Intent intent = new Intent(MainActivity.this,
+                CadastroProfessorActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -39,6 +54,5 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-
 
 }

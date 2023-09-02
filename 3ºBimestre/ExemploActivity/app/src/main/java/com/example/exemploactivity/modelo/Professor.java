@@ -1,26 +1,22 @@
 package com.example.exemploactivity.modelo;
 
-public class Aluno {
+public class Professor {
 
-    private int ra;
+    private int matricula;
     private String nome;
     private String cpf;
     private String dtNasc;
+    private String dtAdmissao;
 
-    public Aluno() {
+    public Professor() {
     }
 
-    public Aluno(int ra, String nome) {
-        this.ra = ra;
-        this.nome = nome;
+    public int getMatricula() {
+        return matricula;
     }
 
-    public int getRa() {
-        return ra;
-    }
-
-    public void setRa(int ra) {
-        this.ra = ra;
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
     }
 
     public String getNome() {
@@ -45,5 +41,13 @@ public class Aluno {
 
     public void setDtNasc(String dtNasc) {
         this.dtNasc = dtNasc;
+    }
+
+    public String getDtAdmissao() {
+        return dtAdmissao;
+    }
+
+    public void setDtAdmissao(String dtAdmissao) {
+        this.dtAdmissao = dtAdmissao;
     }
 }

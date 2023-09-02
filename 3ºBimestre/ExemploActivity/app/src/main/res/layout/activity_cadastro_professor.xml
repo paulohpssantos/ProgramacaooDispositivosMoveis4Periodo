@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CadastroAlunoActivity"
+    tools:context=".CadastroProfessorActivity"
     android:orientation="vertical"
     android:padding="10dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RA:"/>
+        android:text="Matricula:"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Informe o RA do aluno"
-        android:id="@+id/edRaAluno"
+        android:hint="Informe a Matricula"
+        android:id="@+id/edMatriculaProf"
         android:layout_marginBottom="10dp"/>
 
     <TextView
@@ -28,8 +28,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Informe o Nome do aluno"
-        android:id="@+id/edNomeAluno"/>
+        android:hint="Informe o Nome do Professor"
+        android:id="@+id/edNomeProf"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,8 +39,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Informe o cpf do aluno"
-        android:id="@+id/edCpfAluno"
+        android:hint="Informe o cpf do Professor"
+        android:id="@+id/edCpfProf"
         android:layout_marginBottom="10dp"/>
 
     <TextView
@@ -52,7 +52,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Informe a data dd/mm/yyyy"
-        android:id="@+id/edDtNascAluno"
+        android:id="@+id/edDtNascProf"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data de Admissão:"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Informe a data dd/mm/yyyy"
+        android:id="@+id/edDtAdmissaoProf"
         android:layout_marginBottom="10dp"/>
 
     <Button
@@ -67,7 +79,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_margin="10dp"
-        android:id="@+id/tvAlunosCadastrados"/>
+        android:id="@+id/tvProfsCadastrados"/>
 
 
 </LinearLayout>

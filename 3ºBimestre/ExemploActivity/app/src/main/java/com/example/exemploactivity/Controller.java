@@ -1,13 +1,15 @@
 package com.example.exemploactivity;
 
 import com.example.exemploactivity.modelo.Aluno;
+import com.example.exemploactivity.modelo.Professor;
 
 import java.util.ArrayList;
 
 public class Controller {
 
     private static Controller instancia;
-    private static ArrayList<Aluno> listaAlunos;
+    private ArrayList<Aluno> listaAlunos;
+    private ArrayList<Professor> listaProfessores;
 
     public static Controller getInstance(){
         if(instancia == null) {
@@ -19,6 +21,7 @@ public class Controller {
 
     private Controller(){
         listaAlunos = new ArrayList<>();
+        listaProfessores = new ArrayList<>();
     }
 
     public void salvarAluno(Aluno aluno){
@@ -27,5 +30,12 @@ public class Controller {
 
     public ArrayList<Aluno> retornarAlunos() {
         return listaAlunos;
+    }
+    public void salvarProfessor(Professor professor){
+        listaProfessores.add(professor);
+    }
+
+    public ArrayList<Professor> retornarProfessor() {
+        return listaProfessores;
     }
 }
