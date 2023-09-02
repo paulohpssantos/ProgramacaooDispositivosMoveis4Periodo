@@ -86,8 +86,10 @@ public class CadastroProfessorActivity extends AppCompatActivity {
         String texto = "";
         for (Professor prof : Controller.getInstance().retornarProfessor()) {
             texto += "Matricula: "+prof.getMatricula()+" - "+prof.getNome()+"\n"+
-            "CPF: "+prof.getCpf()+" - Dt. Nasc: "+prof.getDtNasc()+"\n"+
-            "Dt. Admissão: "+prof.getDtAdmissao()+"\n"+"------------------------";
+            "CPF: "+prof.getCpf()+"\n" +
+            "Dt. Nasc: "+prof.getDtNasc()+"\n"+
+            "Dt. Admissão: "+prof.getDtAdmissao()+"\n" +
+            "-----------------------------------------\n";
         }
         tvProfsCadastrados.setText(texto);
     }

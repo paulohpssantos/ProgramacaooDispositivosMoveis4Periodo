@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ExemploActivity"
         tools:targetApi="31">
         <activity
+            android:name=".CadastroDisciplinaActivity"
+            android:exported="false" />
+        <activity
             android:name=".CadastroProfessorActivity"
             android:exported="false" />
         <activity
