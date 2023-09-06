@@ -1,6 +1,7 @@
 package com.example.exemploactivity;
 
 import com.example.exemploactivity.modelo.Aluno;
+import com.example.exemploactivity.modelo.Disciplina;
 import com.example.exemploactivity.modelo.Professor;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class Controller {
     private static Controller instancia;
     private ArrayList<Aluno> listaAlunos;
     private ArrayList<Professor> listaProfessores;
+    private ArrayList<Disciplina> listaDisciplinas;
 
     public static Controller getInstance(){
         if(instancia == null) {
@@ -22,6 +24,7 @@ public class Controller {
     private Controller(){
         listaAlunos = new ArrayList<>();
         listaProfessores = new ArrayList<>();
+        listaDisciplinas = new ArrayList<>();
     }
 
     public void salvarAluno(Aluno aluno){
@@ -37,5 +40,11 @@ public class Controller {
 
     public ArrayList<Professor> retornarProfessor() {
         return listaProfessores;
+    }
+    public void salvarDisciplina(Disciplina disciplina){
+        listaDisciplinas.add(disciplina);
+    }
+    public ArrayList<Disciplina> retornarDisciplinas(){
+        return listaDisciplinas;
     }
 }
