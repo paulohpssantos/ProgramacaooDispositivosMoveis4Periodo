@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btCadastrarDisciplina;
 
+    private Button btCadastrarTurma;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,49 +27,42 @@ public class MainActivity extends AppCompatActivity {
         btCadastrarAluno = findViewById(R.id.btCadastroAluno);
         btCadastrarProfessor = findViewById(R.id.btCadastroProfessor);
         btCadastrarDisciplina = findViewById(R.id.btCadastroDisciplina);
+        btCadastrarTurma = findViewById(R.id.btCadastroTurma);
 
         btCadastrarAluno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirCadastroAluno();
+                abrirActivity(CadastroAlunoActivity.class);
             }
         });
 
         btCadastrarProfessor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirCadastroProfessor();
+                abrirActivity(CadastroProfessorActivity.class);
             }
         });
 
         btCadastrarDisciplina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirCadastroDisciplina();
+                abrirActivity(CadastroDisciplinaActivity.class);
+            }
+        });
+
+        btCadastrarTurma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirActivity(CadastroTurmaActivity.class);
             }
         });
     }
 
-    private void abrirCadastroDisciplina() {
-        Intent intent = new Intent(MainActivity.this,
-                CadastroDisciplinaActivity.class);
+    private void abrirActivity(Class<?> activity) {
+        Intent intent = new Intent(MainActivity.this, activity);
         startActivity(intent);
     }
 
-    private void abrirCadastroProfessor() {
-        Intent intent = new Intent(MainActivity.this,
-                CadastroProfessorActivity.class);
-        startActivity(intent);
-    }
 
-    /**
-     * método para abrir uma nova activity
-     */
-    private void abrirCadastroAluno() {
-        Intent intent = new Intent(MainActivity.this,
-                CadastroAlunoActivity.class);
-
-        startActivity(intent);
-    }
 
 }

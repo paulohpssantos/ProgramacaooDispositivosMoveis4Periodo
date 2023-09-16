@@ -39,6 +39,14 @@
         android:layout_marginTop="30dp"
         android:id="@+id/btCadastroDisciplina"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar Turma"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:id="@+id/btCadastroTurma"/>
+
 
 
 </LinearLayout>

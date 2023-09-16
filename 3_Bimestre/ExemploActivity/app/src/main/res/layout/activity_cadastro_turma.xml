@@ -40,7 +40,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Anual"
-                    android:id="@+id/rbAnual"/>
+                    android:id="@+id/rbAnual"
+                    />
 
                 <RadioButton
                     android:layout_width="0dp"
