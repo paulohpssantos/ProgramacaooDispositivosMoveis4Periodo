@@ -52,8 +52,8 @@ public class AlunoDao implements GenericDao<Aluno>{
     public long insert(Aluno obj) {
         try{
             ContentValues valores = new ContentValues();
-            valores.put("RA", obj.getRa());
-            valores.put("NOME", obj.getNome());
+            valores.put(colunas[0], obj.getRa());
+            valores.put(colunas[1], obj.getNome());
 
             return bd.insert(nomeTabela, null, valores);
 
@@ -65,11 +65,28 @@ public class AlunoDao implements GenericDao<Aluno>{
 
     @Override
     public long update(Aluno obj) {
+        try{
+            ContentValues valores = new ContentValues();
+            valores.put(colunas[1], obj.getNome());
+
+            String[]identificador = {String.valueOf(obj.getRa())};
+            return bd.update(nomeTabela, valores,
+                    "RA = ?", identificador);
+
+
+        }catch (SQLException ex){
+            Log.e("ERRO", "AlunoDao.update(): "+ex.getMessage());
+        }
         return 0;
     }
 
     @Override
     public long delete(Aluno obj) {
+        try{
+
+        }catch (SQLException ex){
+            Log.e("ERRO", "AlunoDao.delete(): "+ex.getMessage());
+        }
         return 0;
     }
 
