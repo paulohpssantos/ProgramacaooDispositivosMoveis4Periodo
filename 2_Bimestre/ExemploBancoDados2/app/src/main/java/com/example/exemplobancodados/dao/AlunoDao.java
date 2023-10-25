@@ -118,7 +118,7 @@ public class AlunoDao implements GenericDao<Aluno>{
         }catch (SQLException ex){
             Log.e("ERRO", "AlunoDao.getAll(): "+ex.getMessage());
         }
-        return null;
+        return lista;
     }
 
     @Override
@@ -126,7 +126,7 @@ public class AlunoDao implements GenericDao<Aluno>{
         try{
             String[]identificador = {String.valueOf(id)};
             Cursor cursor = bd.query(nomeTabela, colunas,
-                    colunas[0]+" = ?", identificador,
+                    colunas[0]+" = "+id, null,
                     null, null, null);
 
             //Verifica se é possível retornar o ponteiro para
