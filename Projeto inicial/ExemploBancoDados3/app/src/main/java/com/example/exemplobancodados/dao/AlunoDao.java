@@ -55,28 +55,98 @@ public class AlunoDao implements IGenericDao<Aluno>{
 
     @Override
     public long insert(Aluno obj) {
+        try{
+            ContentValues valores = new ContentValues();
+            valores.put(colunas[0], obj.getRa()); //RA
+            valores.put(colunas[1], obj.getNome()); //NOME
+
+            return baseDados.insert(tabela, null, valores);
+
+//            return baseDados.execSQL("INSERT INTO ALUNO (RA, NOME) VALUES " +
+//                    "("+obj.getRa()+", "+obj.getNome()+" )");
+
+        }catch (SQLException ex){
+            Log.e("UNIPAR", "ERRO: AlunoDao.insert() "+ex.getMessage());
+        }
         return 0;
     }
 
     @Override
     public long update(Aluno obj) {
+        try{
+            ContentValues valores = new ContentValues();
+            valores.put(colunas[1], obj.getNome());
+
+            String[]identificador = {String.valueOf(obj.getRa())};
+
+            return baseDados.update(tabela,  valores,
+                    colunas[0]+"= ?", identificador);
+
+        }catch (SQLException ex){
+            Log.e("UNIPAR", "ERRO: AlunoDao.update() "+ex.getMessage());
+        }
         return 0;
     }
 
     @Override
     public long delete(Aluno obj) {
+        try{
+            String[]identificador = {String.valueOf(obj.getRa())};
+
+            return baseDados.delete(tabela,
+                    colunas[0]+"= ?", identificador);
+        }catch (SQLException ex){
+            Log.e("UNIPAR", "ERRO: AlunoDao.delete() "+ex.getMessage());
+        }
         return 0;
     }
 
     @Override
     public ArrayList<Aluno> getAll() {
+        ArrayList<Aluno> lista = new ArrayList<>();
+        try{
+            Cursor cursor = baseDados.query(tabela,
+                    colunas, null,
+                    null, null,
+                    null, colunas[0]+" desc");
 
-        return null;
+            if(cursor.moveToFirst()){
+                do{
+                   Aluno aluno = new Aluno();
+                   aluno.setRa(cursor.getInt(0));
+                   aluno.setNome(cursor.getString(1));
+
+                   lista.add(aluno);
+
+                }while (cursor.moveToNext());
+            }
+
+        }catch (SQLException ex){
+            Log.e("UNIPAR", "ERRO: AlunoDao.getAll() "+ex.getMessage());
+        }
+
+        return lista;
     }
 
     @Override
     public Aluno getById(int id) {
-        
+        try{
+            String[]identificador = {String.valueOf(id)};
+            Cursor cursor = baseDados.query(tabela, colunas,
+                    colunas[0]+"= ?", identificador,
+                    null, null, null);
+
+            if(cursor.moveToFirst()){
+                Aluno aluno = new Aluno();
+                aluno.setRa(cursor.getInt(0));
+                aluno.setNome(cursor.getString(1));
+
+                return aluno;
+            }
+
+        }catch (SQLException ex){
+            Log.e("UNIPAR", "ERRO: AlunoDao.getById() "+ex.getMessage());
+        }
         return null;
     }
 }
