@@ -2,7 +2,9 @@ package com.example.exemplobancodados.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.exemplobancodados.R;
 import com.example.exemplobancodados.dao.AlunoDao;
@@ -15,10 +17,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Aluno aluno = new Aluno();
-        aluno.setRa(123);
-        aluno.setNome("JUCA");
-        AlunoDao.getInstancia(this).insert(aluno);
+
+    }
+
+    public void abrirCadastroAluno(View view) {
+
+        Intent intent = new Intent(MainActivity.this,
+                AlunoActivity.class);
+        startActivity(intent);
 
     }
 }
