@@ -45,7 +45,7 @@ public class AlunoDao implements IGenericDao<Aluno>{
 
         //Abrir a conexão com a base de dados
         openHelper = new SQLiteDataHelper(this.context,
-                "UNIPAR_TOLEDO", null, 1);
+                "UNIPAR_BD", null, 1);
 
         //instanciando a base de dados
         baseDados = openHelper.getWritableDatabase();
