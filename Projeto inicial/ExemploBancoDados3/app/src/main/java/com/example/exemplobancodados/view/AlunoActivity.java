@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -68,16 +69,23 @@ public class AlunoActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-        builder.setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //método de salvar aluno
-                salvarDados();
+        builder.setPositiveButton("Salvar", null);
+        dialog = builder.create();
 
+        //Adicionando ação ao botão salvar após criação da tela
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button bt = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        salvarDados();
+                    }
+                });
             }
         });
 
-        dialog = builder.create();
         dialog.show();
 
     }
@@ -89,9 +97,11 @@ public class AlunoActivity extends AppCompatActivity {
         if(retorno != null){
             if(retorno.contains("RA")){
                 edRa.setError(retorno);
+                edRa.requestFocus();
             }
             if(retorno.contains("NOME")){
                 edNome.setError(retorno);
+                edNome.requestFocus();
             }
         }else{
             Toast.makeText(this,
