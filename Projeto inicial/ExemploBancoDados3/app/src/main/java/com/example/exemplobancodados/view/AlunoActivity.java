@@ -2,6 +2,9 @@ package com.example.exemplobancodados.view;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,8 +14,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.exemplobancodados.R;
+import com.example.exemplobancodados.adapter.AlunoListAdapter;
 import com.example.exemplobancodados.controller.AlunoController;
+import com.example.exemplobancodados.model.Aluno;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 public class AlunoActivity extends AppCompatActivity {
 
@@ -22,6 +29,7 @@ public class AlunoActivity extends AppCompatActivity {
     private EditText edRa;
     private EditText edNome;
     private View viewAlert;
+    private RecyclerView rvAlunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +37,7 @@ public class AlunoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_aluno);
 
         controller = new AlunoController(this);
-
+        rvAlunos = findViewById(R.id.rvAlunos);
         btCadastroAluno = findViewById(R.id.btCadastroAluno);
         btCadastroAluno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +45,8 @@ public class AlunoActivity extends AppCompatActivity {
                 abrirCadastro();
             }
         });
+
+        atualizarListaAluno();
     }
 
     private void abrirCadastro() {
@@ -46,8 +56,6 @@ public class AlunoActivity extends AppCompatActivity {
 
         edRa = viewAlert.findViewById(R.id.edRa);
         edNome = viewAlert.findViewById(R.id.edNome);
-
-
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("CADASTRO DE ALUNO"); //Adicionando título ao popup
@@ -91,7 +99,18 @@ public class AlunoActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
 
             dialog.dismiss();
+            atualizarListaAluno();
         }
+    }
+
+    /**
+     * Método cria e atualiza a lista de alunos
+     */
+    private void atualizarListaAluno(){
+        ArrayList<Aluno> listaAlunos = controller.retornarTodosAlunos();
+        AlunoListAdapter adapter = new AlunoListAdapter(listaAlunos, this);
+        rvAlunos.setLayoutManager(new LinearLayoutManager(this));
+        rvAlunos.setAdapter(adapter);
     }
 }
 
