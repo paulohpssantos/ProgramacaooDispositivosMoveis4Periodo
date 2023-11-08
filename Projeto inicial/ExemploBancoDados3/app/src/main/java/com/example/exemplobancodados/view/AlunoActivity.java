@@ -71,7 +71,6 @@ public class AlunoActivity extends AppCompatActivity {
         });
         builder.setPositiveButton("Salvar", null);
         dialog = builder.create();
-
         //Adicionando ação ao botão salvar após criação da tela
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
@@ -85,7 +84,6 @@ public class AlunoActivity extends AppCompatActivity {
                 });
             }
         });
-
         dialog.show();
 
     }
@@ -93,7 +91,6 @@ public class AlunoActivity extends AppCompatActivity {
     public void salvarDados(){
         String retorno = controller.salvarAluno(edRa.getText().toString(),
                                                 edNome.getText().toString());
-
         if(retorno != null){
             if(retorno.contains("RA")){
                 edRa.setError(retorno);
