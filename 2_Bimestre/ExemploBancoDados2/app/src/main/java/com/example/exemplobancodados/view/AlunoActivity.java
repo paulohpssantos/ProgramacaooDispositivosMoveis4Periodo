@@ -2,6 +2,8 @@ package com.example.exemplobancodados.view;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,8 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.exemplobancodados.R;
+
+import com.example.exemplobancodados.adapter.AlunoListAdapter;
 import com.example.exemplobancodados.controller.AlunoController;
+import com.example.exemplobancodados.model.Aluno;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 public class AlunoActivity extends AppCompatActivity {
 
@@ -21,6 +28,7 @@ public class AlunoActivity extends AppCompatActivity {
     private FloatingActionButton btCadastroAluno;
     private AlertDialog cadastroDialog;
     private AlunoController controller;
+    private RecyclerView rvAlunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,8 @@ public class AlunoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_aluno);
 
         btCadastroAluno = findViewById(R.id.btCadastroAluno);
+        rvAlunos = findViewById(R.id.rvAlunos);
+
         controller = new AlunoController(this);
         btCadastroAluno.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +45,14 @@ public class AlunoActivity extends AppCompatActivity {
                 abrirCadastroAluno();
             }
         });
+        carregarListaAlunos();
+    }
+
+    private void carregarListaAlunos(){
+        ArrayList<Aluno>listaAlunos = controller.retornaAlunos();
+        AlunoListAdapter adapter = new AlunoListAdapter(listaAlunos, this);
+        rvAlunos.setLayoutManager(new LinearLayoutManager(this));
+        rvAlunos.setAdapter(adapter);
     }
 
     private void abrirCadastroAluno() {
@@ -99,6 +117,7 @@ public class AlunoActivity extends AppCompatActivity {
                     "Aluno cadastrado com sucesso!",
                     Toast.LENGTH_LONG).show();
             cadastroDialog.dismiss();
+            carregarListaAlunos();
 
         }
 
